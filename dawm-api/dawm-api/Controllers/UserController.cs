@@ -18,6 +18,12 @@ namespace dawm_api.Controllers
         {
             return Ok(_userRepository.GetUsers());
         }
+
+        [HttpGet("{id}")]
+        public ActionResult<User> GetUserById(int id)
+        {
+            return Ok(_userRepository.GetUserById(id));
+        }
     }
 }
 

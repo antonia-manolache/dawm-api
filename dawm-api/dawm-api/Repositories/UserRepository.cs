@@ -1,13 +1,14 @@
 ﻿using dawm_api.Entities;
 using dawm_api.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
 using static dawm_api.AppDbContext;
 
 namespace dawm_api.Repositories
 {
-    public class UserRepository : IUserRepository
+    public class PostRepository : IUserRepository
     {
-        public UserRepository()
+        public PostRepository()
         {
             using (var context = new AppDbContext())
             {
@@ -48,6 +49,42 @@ namespace dawm_api.Repositories
                 var list = context.Users
                     .Include(a => a.Posts)
                     .ToList();
+                return list;
+            }
+        }
+
+        public User GetUserById(int userId)
+        {
+            using (var context = new AppDbContext())
+            {
+                var result = context.Users
+                .Where(e => e.Id == userId)
+                .FirstOrDefault();
+
+                return result;
+            }
+        }
+
+        public Post GetPostById(int postId)
+        {
+            using (var context = new AppDbContext())
+            {
+                var result = context.Posts
+                .Where(e => e.Id == postId)
+                .FirstOrDefault();
+
+                return result;
+            }
+        }
+
+        public List<Post> GetPostsByUserId(int userId)
+        {
+            using (var context = new AppDbContext())
+            {
+                var list = context.Posts
+                .Where(e => e.Id == userId)
+                .ToList();
+
                 return list;
             }
         }

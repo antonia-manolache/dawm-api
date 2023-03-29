@@ -5,7 +5,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 
 
-builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IUserRepository, PostRepository>();
+//builder.Services.AddScoped<IPostRepository, PostRepository>();
 
 // Add services to the container.
 
