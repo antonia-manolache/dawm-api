@@ -1,4 +1,11 @@
+using dawm_api.Interfaces;
+using dawm_api.Repositories;
+
 var builder = WebApplication.CreateBuilder(args);
+
+
+
+builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 // Add services to the container.
 
